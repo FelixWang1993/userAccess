@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <classPathEntry location="postgresql-9.4.1211.jar" />
+
+  <context id="ForSampleTables" targetRuntime="MyBatis3Simple">
+    <jdbcConnection driverClass="org.postgresql.Driver"
+        connectionURL="jdbc:postgresql://localhost:5432/userdb"
+        userId="postgres"
+        password="admin">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>  
+    
+    <javaModelGenerator targetPackage="com.maya.useraccess.model" targetProject="../src/main/java">
+      <property name="enableSubPackages" value="false" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+    
+    <sqlMapGenerator targetPackage="mapper"  targetProject="../src/main/resources">
+      <property name="enableSubPackages" value="false" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.maya.useraccess.mapper" targetProject="../src/main/java">
+      <property name="enableSubPackages" value="false" />
+    </javaClientGenerator>
+    
+    <table schema="public" tableName="user" domainObjectName="UserModel" >
+      <property name="useActualColumnNames" value="false"/>
+      <columnOverride column="birthday" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+    </table>
+  </context>
+</generatorConfiguration>
